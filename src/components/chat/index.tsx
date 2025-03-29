@@ -30,8 +30,14 @@ const ChatComponent = () => {
     else if (hour < 18) setGreeting("Good afternoon");
     else setGreeting("Good evening");
 
-    const name = prompt("What should I call you?") || "User";
-    setUserName(name);
+    const name = localStorage.getItem('username');
+    if (name) {
+      setUserName(name);
+    } else {
+      const name = prompt("What should I call you?") || "User";
+      setUserName(name);
+      localStorage.setItem('username', name);
+    }
   }, []);
 
   useEffect(() => {
